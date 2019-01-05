@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+            namr: "daijing",
+            age: 20
+        }
+var cheng = { ...obj} //解构 深拷贝改变无影响 浅拷贝改变会有影响
+        cheng.name = "sujin"
+        console.log(cheng,obj)
+        // console.log(obj)
+    </script>
+</body>
+
+</html>
