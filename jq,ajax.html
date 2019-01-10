@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+
+</head>
+
+<body>
+    <p></p>
+    <img src="" alt="">
+
+    <script>
+        function http(success) {
+            $.ajax({
+                url: `https://douban.uieee.com/v2/movie/top250`,
+                dataType:'jsonp',
+                success: res=>{
+                    success(res)
+                }
+            })
+        }
+        http(res=>{
+            var title=res.subjects[0].title;
+            var imgUrl=res.subjects[0].images.small;
+            console.log(title,imgUrl)
+            $('p').html(title)
+            $('img').attr("src",imgUrl)
+        })
+
+        
+    </script>
+</body>
+
+</html>
