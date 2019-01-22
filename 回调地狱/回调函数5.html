@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+
+</head>
+
+<body>
+    <script>
+        var baseUrl = "https://douban.uieee.com/v2/movie/"
+
+        async function http({
+            url
+        }) {
+            return $.ajax({
+                url: "https://douban.uieee.com/v2/movie/top250",
+                dataType: "jsonp"
+            })
+        }
+        async function getData() {
+            var data = await http({
+                url: "search?q=你的名字&count=1"
+            })
+            var id = data.subjects[0].id;
+            var detail = await http({
+                url: id
+            })
+            console.log(data)
+            console.log(detail)
+
+        }
+        getData()
+    </script>
+</body>
+
+</html>

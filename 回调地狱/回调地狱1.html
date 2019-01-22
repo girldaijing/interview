@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+</head>
+<style>
+
+</style>
+
+<body>
+    <input placeholder="" 你的名字>
+    <button>搜索</button>
+    <h1></h1>
+    <img src="" alt="">
+    <p></p>
+    <script>
+      
+
+        var baseUrl = "https://douban.uieee.com/v2/movie/"
+
+        function http(url) {
+            var promise = new Promise((resolve, reject) => {
+                $.ajax({
+                    url: baseUrl + url,
+                    dataType: "jsonp",
+                    success: res => {
+                        resolve(res)
+                    },
+                    error: err => {
+                        reject(res)
+                    }
+                })
+            })
+            return promise;
+        }
+
+        $("button").click(function () {
+            var value = $("input").val();
+            http(`search?q=${value}&count=1`).then(res => {
+                var title = res.subjects[0].title;
+                var id = res.subjects[0].id;
+                var imgUrl = res.subjects[0].images.small;
+                $('h1').html(title)
+                $('img').attr('src', imgUrl)
+                return http(id)
+            }).then(res => {
+                var summary = res.summary;
+                $('p').html(summary)
+            })
+        })
+    </script>
+</body>
+
+</html>

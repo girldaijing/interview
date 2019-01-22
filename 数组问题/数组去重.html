@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var arr=[1,2,3,1,4,2]
+    var temp=[]
+//     var obj={}
+    
+//     arr.forEach(ele => {
+//         if(!obj[ele]){
+//              obj[ele]='a'
+//              temp.push(ele)
+//         }
+       
+//     });
+// console.log(obj)
+    // console.log(temp)
+
+
+// console.log([...new Set(arr)])
+
+ 
+arr.forEach(ele=>{
+    if(!temp.includes(ele)){
+        temp.push(ele)
+    }
+})
+
+console.log(temp)
+
+    </script>
+</body>
+</html>

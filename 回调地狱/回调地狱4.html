@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+
+</head>
+
+<body>
+    <input placeholder="" 你的名字>
+    <button>搜索</button>
+    <h1></h1>
+    <img src="" alt="">
+    <p></p>
+    <script>
+
+
+
+
+        var baseUrl = "http://api.douban.com/v2/movie/"
+
+        function* getData() {
+            var id = yield $.ajax({
+                url: baseUrl + 'search?q=你的名字&count=1',
+                dataType: "jsonp",
+            })
+            yield $.ajax({
+                url: baseUrl + id,
+                dataType: "jsonp",
+            })
+        }
+        var gen = getData()
+        var movie = gen.next()
+        movie.value.then(res => {
+            var title = res.subjects[0].title;
+            var id = res.subjects[0].id;
+            var imgUrl = res.subjects[0].images.small;
+            $('h1').html(title)
+            $('img').attr('src', imgUrl)
+            var detail = gen.next(id)
+            detail.value.then(res => {
+                var summary = res.summary;
+                $('p').html(summary)
+            })
+        })
+    </script>
+</body>
+
+</html>

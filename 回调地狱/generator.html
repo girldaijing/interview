@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function* gen() {
+        //     yield console.log("test 1");
+        //     yield console.log("test 2");
+        //     yield console.log("test 3");
+        //     // return y;
+        // }
+
+        // var g = gen();
+        // g.next() //“test 1”
+        // g.next() //“test 2”
+        // g.next() //“test 3”
+
+
+        function* gen(x) {
+            yield x
+            var y = yield x + 13
+            yield y + 50
+        }
+        var g = gen(10)
+        console.log(g.next()) //10
+        console.log(g.next()) //23
+
+        
+        console.log(g.next(50)) //100   y=50
+    </script>
+</body>
+
+</html>
